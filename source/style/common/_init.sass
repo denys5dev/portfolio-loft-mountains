@@ -1,0 +1,267 @@
+// =================================
+// Chris Coyier border-box reset
+// =================================
+html
+	box-sizing: border-box
+
+*, *:before, *:after
+	box-sizing: inherit
+
+// =================================
+// Page init
+// =================================
+html,
+body
+	height: 100%
+	min-width: 320px
+	position: relative
+	font-size: 100%
+	font-family: "Roboto_medium", sans-serif
+
+html
+	overflow-y: scroll
+
+.header
+	text-align: center
+	&_welcome
+		text-align: right
+		+media(s)
+			text-align: center
+
+.content
+	&_welcome
+		text-align: center
+
+.footer
+	&_welcome
+		text-align: center
+
+.vertical-aligned
+	display: table-cell
+	vertical-align: middle
+	position: relative
+
+.perspective-box
+	perspective: 1000px
+
+.preloader
+	position: fixed
+	width: 100%
+	height: 100%
+	left: 0
+	top: 0
+	z-index: 99999
+	background-color: $maincolor
+
+.no-js
+	.preloader
+		display: none
+
+.container
+	max-width: 1800px
+	margin: 0 auto
+	&_padded
+		padding: 25px 20px
+	&_fullwidth
+		max-width: none
+
+.clearfix
+	&::before,
+	&::after
+		content: ""
+		display: table
+	&::after
+		clear: both
+
+.sprites-container
+	display: none
+
+// =================================
+// Table Layout Modifiers
+// =================================
+.table-box
+	display: table
+	width: 100%
+	&__top,
+	&__middle,
+	&__bottom
+		display: table-row
+	&__middle
+		height: 100%
+
+
+
+// =================================
+// Typography
+// =================================
+
+h1, h2, h3, h4, h5, h6
+	font-family: "bernier_regular", sans-serif
+	color: $text-color
+	line-height: 1
+	font-weight: normal
+	margin: 0
+	text-align: center
+	position: relative
+
+h1, h2
+	font-size: em(63,16)
+	+media(m)
+		font-size: em(49,16)
+	+media(xs)
+		font-size: em(35,16)
+
+h3
+	font-size: em(35,16)
+	+media(m)
+		font-size: em(30,16)
+	+media(xs)
+		font-size: em(21,16)
+
+
+h4, h5, h6
+	font-size: em(26,16)
+	+media(m)
+		font-size: em(24,16)
+	+media(xs)
+		font-size: em(21,16)
+
+
+
+
+
+// =================================
+// Text header style
+// =================================
+.sidestripes
+	padding: 0 42px
+	display: inline-block
+	&::before,
+	&::after
+		color: $stripes-color
+		content: ""
+		position: absolute
+		top: .5em
+		margin-top: -2.5px
+		height: 5px
+		width: 22px
+		display: inline-block
+		vertical-align: middle
+		background-color: $gray_light
+		opacity: .8
+	&::before
+		left: 0
+	&::after
+		right: 0
+
+.svg-heading
+	position: relative
+	display: block
+	padding: 65px 15px
+	text-align: center
+	&__text
+		position: relative
+		width: 380px
+		z-index: 3
+		+media(m)
+			width: auto
+	&__img
+		position: absolute
+		fill: invert($white)
+		z-index: 0
+		top: 50%
+		left: 50%
+		width: 100%
+		height: auto
+		transform: translate(-50%,-55%)
+		opacity: .07
+
+
+
+
+// =================================
+// Elements
+// =================================
+img
+	max-width: 100%
+
+button
+	border: none
+	outline: none
+	background: none
+	cursor: pointer
+
+.avatar
+	margin: 0 auto
+	width: 137px
+	height: 137px
+	border-radius: 50%
+	overflow: hidden
+	img
+		width: 100%
+		display: block
+
+.social-links
+	position: relative
+	margin: 0
+	padding: 0
+	list-style: none
+	z-index: 10
+	&__item
+		display: inline-block
+		margin: 0 12px
+		text-align: center
+		&:first-child
+			margin-left: 0
+		&:last-child
+			margin-right: 0
+		&_welcome
+			.social-links__link
+				color: $maincolor
+		&_circle
+			margin: 0 5px
+			.social-links__link
+				border: 2px solid $white
+				border-radius: 50%
+				font-size: em(18)
+				line-height: 34px
+				width: 38px
+				height: 38px
+				&:hover
+					background-color: $white
+					&::before
+						color: $text-color
+		&_svg
+			margin: 0 5px
+
+	&__link
+		color: $white
+		text-decoration: none
+		font-size: em(28,16)
+		line-height: 1
+		opacity: .5
+		transition: opacity $transition-time
+		&:hover
+			opacity: 1
+
+	&__svg-link
+		text-decoration: none
+		svg
+			width: 38px
+			height: 38px
+			border-radius: 50%
+			box-shadow: inset 0 0 0 1px $white
+			overflow: hidden
+		.mask__path
+			transition: all $transition-time
+		.mask__rect_inner
+			fill: white
+			transition: all $transition-time
+		.mask__rect_outer
+			fill: white
+			transition: all $transition-time
+		&:hover
+			.mask__path
+				fill: $white
+			.mask__rect_inner
+				fill: transparent

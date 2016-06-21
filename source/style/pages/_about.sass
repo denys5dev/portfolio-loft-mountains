@@ -1,0 +1,143 @@
+.about-me
+	@extend .clearfix
+	&__stretcher
+		width: 100%
+		position: relative
+		float: left
+		&_dark
+			background-color: $pastel_dark
+			+media(s)
+				background-color: $pastel
+		&_light
+			background-color: $pastel
+			right: 50%
+			+media(s)
+				right: 0
+
+
+	&__bio,
+	&__skills
+		float: left
+		width: 50%
+		position: relative
+		left: 50%
+		min-height: 650px;
+		text-align: center
+		+media(s)
+			width: 100%
+			float: none
+			left: 0
+
+	.bio
+		padding: 0 5%
+		&__main-image
+		&__heading
+			margin: 40px auto 10px
+		&__about
+			padding-bottom: 40px
+			font-family: "roboto_regular"
+			color: $text-color
+			text-align: left
+
+	.skills
+		padding: 0 5%
+		background-color: $pastel_dark
+		@extend .clearfix
+		&__heading
+			margin: 40px auto
+		&__descr
+			font-family: "roboto_regular"
+			color: $text-color
+			text-align: left
+			margin: 0 auto 50px
+		&__group
+			margin: 0 auto 40px
+			text-align: left
+			.group
+				&__title
+					font-size: em(28)
+					color: $text-color
+				&__item
+
+
+
+.contacts
+	position: relative
+	padding-bottom: 0
+	&__map
+		position: relative
+		z-index: 0
+		#map
+			min-height: $footer-height*2
+			width: 100%
+			+media(s)
+				min-height: $footer-height*2.5
+
+	&__info
+		display: block
+		background-color: rgba($white, .7)
+		width: 400px
+		border-radius: 5px
+		position: absolute
+		top: 50%
+		left: 50%
+		transform: translate(-50%, -100%)
+		padding: 40px
+		box-shadow: 0 0 15px 2px rgba(invert($white), .2)
+		+media(s)
+			top: 0
+			left: 0
+			border-radius: 0
+			width: 100%
+			transform: translate(0, 0)
+			box-shadow: none
+		.contacts__heading
+			display: block
+			text-align: center
+		.contacts__links
+			list-style: none
+			padding: 0
+			.link-wrapper
+				margin: 30px 0
+				.link
+					color: $text-color
+					text-decoration: none
+					vertical-align: middle
+					.fa
+						color: $maincolor
+						font-size: em(26)
+						vertical-align: middle
+						margin-right: 10px
+#svg circle 
+  stroke-dashoffset: 0
+  transition: stroke-dashoffset 1s linear
+  stroke: #dfdcd5
+  stroke-width: 30px
+
+#svg #bar 
+  stroke: #10c1a8
+
+#cont 
+  display: block
+  height: 175px
+  width: 200px
+  border-radius: 100%
+  position: relative
+
+#cont:after 
+	font-family: 'roboto'
+	font-weight: 800
+    position: absolute
+    display: block
+    height: 13px
+    width: 64px
+    left: 77%
+    top: 100%
+    content: attr(data-pct) ""
+    color: #10c1a8
+    margin-top: -84px
+    margin-left: -86px
+    border-radius: 100%
+    line-height: 13px
+    font-size: 13px
+    text-align: center

@@ -1,0 +1,70 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body
+		<!--[if lt IE 7]>
+		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
+		<![endif]-->
+
+		include common/_sprites
+		.preloader
+
+		include common/_parallax
+		+main-menu(2)
+
+		header.header.table-box.fullheight.fullheight_mih
+			.table-box__top
+				+header-top
+			.table-box__middle
+				.vertical-aligned
+					.site-author.site-author_blog
+						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Денис Архипенко")
+						+svg-heading("Блог", "icon-blog_header")
+						p.site-author__description Статьи
+
+
+					button.go-down.fa.fa-chevron-down(data-link=".blog")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left.header__svg-corner_blog
+						use(xlink:href="#icon-about_bg_left")
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right.header__svg-corner_blog
+						use(xlink:href="#icon-about_bg_right")
+
+
+		.blog.last-section
+			aside.blog-navigation
+				button.blog-navigation__toggle
+				nav.blog-navigation__wrapper
+					ul.blog-navigation__links-list
+						li.links-list__item
+							a.links-list__link.active(href="#google") Angular — это паттерн проектирования
+						li.links-list__item
+							a.links-list__link(href="#alph") 2 state
+
+			section.blog-content
+				.article#google
+					h3.article__title Давайте разбираться. Прошу под кат.
+					p.article__date 20 марта в 04:31
+					.article__content.
+						<p>Со стремительным приближением Angular 2.0, параллельно существующим с большим количеством других frontend-фреймворков, в воздухе витает множество волнений по поводу предстоящих затрат (как временных, так и денежных), связанных с переводом своих проектов на новую версию. Как вы думаете, есть ли у разработчиков желание изучить еще один новый фреймворк?</p>
+
+
+						<p>Несколько команд разработчиков провели достаточное количество времени с Angular 2.0, примерно столько же, сколько и наша (Прим. пер.: Ionic team). Мы вернулись к проектированию Ionic 2, когда Angular 2 был еще в статусе «пре-альфа», в надежде получить еще более быстрый, более совместимый со стандартами, и перспективный мобильный веб-фреймворк, — еще лучше, чем Angular 1.</p>
+
+						<p>Самое главное, что мы поняли, работая над Ionic 2 — это то, как похожи Angular 2 и Angular 1 на высоком уровне, и как понимание этого поможет разработчикам гораздо легче перейти с Angular 1 на Angular 2. Во многих отношениях, Angular 2, на самом деле, не является новым фреймворком как таковым. Это лишь новый стандарт Angular, с которым мы знакомы и который так полюбили.</p>
+
+
+						<p>Документ внесли на рассмотрение в декабре депутаты из «Справедливой России» и ЛДПР. Вначале была идея облагать налогом еще и российских продавцов, но позже решили оставить 18% налог только для западных представителей. Тогда говорилось о том, что «налог на Google» принесет государству дополнительные 10 миллиардов рублей. В планах запустить такую же добавочную стоимость к зарубежным интернет-магазинам.</p>
+
+				.article#alph
+					h3.article__title Angular 2
+					p.article__date 20 марта в 04:31
+					.article__content.
+						<p>Вместе с Angular 1, Angular 2, и Angular Dart, Angular прошел путь от фрейворка, основанного на одном стандарте ES5, до концептуального фреймворка, или паттерна проектирования с множеством стандартов.</p>
+						
+
+						<p>Можно спроектировать пользовательский интерфейс и frontend-приложение в стиле Angular, базируясь, по крайней мере, на трех основных языках: ES5, ES6/TypeScript и Dart, хотя ES6/TypeScript становится де-факто стандартом Angular.</p>
+
+
+		include common/_footer

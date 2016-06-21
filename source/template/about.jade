@@ -1,0 +1,114 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body
+		<!--[if lt IE 7]>
+		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
+		<![endif]-->
+		include common/_gmap
+		include common/_sprites
+		.preloader
+
+		include common/_parallax
+		+main-menu(3)
+
+		header.header.table-box.fullheight.fullheight_mih
+			.table-box__top
+				+header-top
+			.table-box__middle
+				.vertical-aligned
+					.site-author
+						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+						p.site-author__name Денис Архипенко
+						p.site-author__description Еще одна страничка
+
+					svg.header__svg-bg
+						use(xlink:href="#icon-portfolio_header")
+					button.go-down.fa.fa-chevron-down(data-link=".about-me")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left
+						use(xlink:href="#icon-about_bg_left")
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right
+						use(xlink:href="#icon-about_bg_right")
+
+
+
+		section.about-me
+			.about-me__stretcher.about-me__stretcher_dark
+				.about-me__stretcher.about-me__stretcher_light
+					.about-me__bio.bio
+						+svg-heading("Обо мне", "icon-about_header")
+						.bio__main-image
+							img(src="/assets/img/iam.jpg", alt="Денис Архипенко", title="Разработка сайтов под ключ. Frontend. Wordpress.")
+						h3.bio__heading.sidestripes Кто я?
+						.bio__about
+							p.
+								Я веб разработчик из Новосибирска. Мне 27 лет. Я занимаюсь разработкой современных сайтов и приложений. Мне нравится делать интересные и современные проекты.
+							p.
+								Этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool. Чуть позже я освежу в нём свой контент. А пока посмотрите,как тут всё классно и красиво!
+
+					.about-me__skills.skills
+						h3.skills__heading.sidestripes Чем я могу быть вам полезен
+						.skills__descr
+							p.
+								Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачина Backend. Но давайте по порядку.
+						.skills__group
+							.group__title Frontend
+							.group__item
+								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+							.group__item
+								svg#svg( width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+						.skills__group
+							.group__title Backend
+							.group__item
+								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='00')
+							.group__item
+								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+							.group__item
+								svg#svg(width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+						.skills__group
+							.group__title Workflow
+							.group__item
+								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+							.group__item
+								svg#svg(width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
+									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+		section.contacts.last-section
+			.contacts__map
+				#map
+			.contacts__info
+				.contacts__heading
+					h3.sidestripes Контакты
+				ul.contacts__links
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-skype
+							| скайп
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-envelope
+							|почта
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-phone
+							| телефон
+					li.link-wrapper
+						a.link(href="#")
+							i.fa.fa-map-marker
+							| адрес
+
+		include common/_footer
