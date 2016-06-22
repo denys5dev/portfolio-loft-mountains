@@ -30,7 +30,6 @@ $.gulp.task('default', $.gulp.series(
 		'sass',
 		'jade',
 		'vendor_libs',
-		'js.lint',
 		'js.process',
 		'copy.image'
 		),
