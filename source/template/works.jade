@@ -21,7 +21,7 @@ html
 					.site-author
 						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						p.site-author__name Денис Архипенко
-						p.site-author__description Еще одна страничка
+						p.site-author__description Личный сайт веб разработчика
 
 					svg.header__svg-bg
 						use(xlink:href="#icon-portfolio_header")
@@ -66,7 +66,7 @@ html
 
 
 		section.talks.clearfix.last-section
-			+svg-heading("Что обо мне говорят", "icon-about_header", h2)
+			+svg-heading("Что обо мне говорят", "icon-about_header", "h2")
 			.talks__wrapper.clearfix
 				.testimonial
 					blockquote.testimonial__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
@@ -84,7 +84,7 @@ html
 							p.author__name Зар Захаров
 							p.author__description сооснователь LoftSchool
 
-			form.contact-form(type="POST" action="/")
+			form.contact-form(method="POST" action="/")
 				.contact-form__bg
 				.contact-form__content
 					h3.contact-form__heading.sidestripes Связаться со мной
@@ -94,8 +94,10 @@ html
 
 				ul.page-links
 					- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+					- var buttons_type = ["submit", "reset"];
+					- var val = 0;
 					each b_action, b_name in buttons
-						li.page-links__item
-							button(class="page-links__link", id=b_action)= b_name
+						li(style="width: 50%").page-links__item
+							button(class="page-links__link", id=b_action, type=buttons_type[val++])= b_name
 
 		include common/_footer

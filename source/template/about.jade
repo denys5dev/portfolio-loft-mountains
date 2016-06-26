@@ -21,7 +21,7 @@ html
 					.site-author
 						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
 						p.site-author__name Денис Архипенко
-						p.site-author__description Еще одна страничка
+						p.site-author__description Личный сайт веб разработчика
 
 					svg.header__svg-bg
 						use(xlink:href="#icon-portfolio_header")
@@ -52,7 +52,7 @@ html
 						h3.skills__heading.sidestripes Чем я могу быть вам полезен
 						.skills__descr
 							p.
-								Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачина Backend. Но давайте по порядку.
+								Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачи на Backend. Но давайте по порядку.
 						.skills__group
 							.group__title Frontend
 							.group__item
@@ -94,21 +94,10 @@ html
 				.contacts__heading
 					h3.sidestripes Контакты
 				ul.contacts__links
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-skype
-							| скайп
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-envelope
-							|почта
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-phone
-							| телефон
-					li.link-wrapper
-						a.link(href="#")
-							i.fa.fa-map-marker
-							| адрес
-
+					- var contact_item = { 'skype' : 'flysector', 'envelope': 'denys5dev@gmail.com', 'phone': '+380000000', 'map-marker' : 'Kamenets-Podolsky' };
+					each type, link_a in contact_item
+						li.link-wrapper
+							a.link(href="#")
+								i(class= "fa fa-" + link_a)
+								span=type
 		include common/_footer
