@@ -35,7 +35,7 @@ $gray_light: #d0d2d2
 // =================================
 $transition-time: .3s
 $transition-time_fast: .2s
-$transition-time_medium: .6s
+$transition-time_medium: .7s
 $transition-time_slow: 1.5s
 
 
@@ -46,3 +46,43 @@ $transition-time_slow: 1.5s
 $footer-height: 450px
 $footer-height_small: 600px
 $footer-height_xsmall: 700px
+
+
+
+// =================================
+// Animations
+// =================================
+@keyframes hideThumbUp
+	0%
+		visibility: visible
+	100%
+		transform: translate3d(0,-100%,0)
+		visibility: visible
+
+@keyframes showThumbUp
+	0%
+		transform: translate3d(0,100%,0)
+	100%
+		transform: translate3d(0,0,0)
+
+@keyframes hideThumbDown
+	0%
+		visibility: visible
+	100%
+		transform: translate3d(0,100%,0)
+		visibility: visible
+
+@keyframes showThumbDown
+	0%
+		transform: translate3d(0,-100%,0)
+	100%
+		transform: translate3d(0,0,0)
+
+@keyframes showLetter
+	0%
+		opacity: 0
+		transform: perspective(750px) translate3d(0,0,600px) scale3d(0.7,0.7,1)
+		// transform: translate3d(0,-100%,0) scale3d(0.7,0.7,1)
+	100%
+		opacity: 1
+		transform: perspective(750px) translate3d(0,0,0) scale3d(1,1,1)

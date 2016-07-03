@@ -1,25 +1,17 @@
-.site-author_blog
-	.site-author__description
-		font-family: "roboto_regular"
-		opacity: 1
-
-	.svg-heading
-		padding: 30px 15px 15px
-		&__text
-			color: $white
-			width: auto
-		&__img
-			fill: $white
-			opacity: .2
-			height: 300px
-			width: 300px
-			transform: translate(-50%,-45%)
-
+// =================================
+// Blog section
+// =================================
 .blog
 	@extend .clearfix
 	background-color: $white
-	// position: relative
 
+
+
+
+
+// =================================
+// Blog sidebar
+// =================================
 .blog-navigation,
 .blog-content
 	float: left
@@ -28,19 +20,21 @@
 .blog-navigation
 	width: 30%
 	text-align: right
+	z-index: 12
 	+media(s)
 		position: fixed
 		float: none
 		top: 0
-		left: -70%
+		left: -50%
 		bottom: 0
 		z-index: 10
-		width: 70%
+		width: 50%
 		height: 100%
 		background-color: $maincolor
 		transition: all $transition-time
 	&.active
 		left: 0
+
 	&__wrapper
 		z-index: 12
 		+media(s)
@@ -58,12 +52,13 @@
 			z-index: 1
 			position: absolute
 			top: 50%
-			right: -40px
-			height: 120px
+			right: -30px
+			height: 100px
 			width: 100px
 			margin-top: -60px
-			border-top-right-radius: 50%
-			border-bottom-right-radius: 50%
+			// border-top-right-radius: 50%
+			// border-bottom-right-radius: 50%
+			border-radius: 50%
 			background-color: $maincolor
 
 	&__links-list
@@ -81,8 +76,7 @@
 				border-right: 2px solid transparent
 				transition: all $transition-time
 				+media(s)
-					color: $white
-					opacity: .7
+					color: rgba($white, .7)
 					padding: 10px 0
 					border: none
 				&:hover,
@@ -90,10 +84,15 @@
 					color: $maincolor
 					border-color: $maincolor
 					+media(s)
-						color: $white
-						opacity: 1
+						color: rgba($white, 1)
 
 
+
+
+
+// =================================
+// Blog articles
+// =================================
 .blog-content
 	width: 70%
 	+media(s)
@@ -115,3 +114,9 @@
 		&__content
 			font-family: "roboto_regular"
 			color: $text-color
+
+		a
+			color: $maincolor
+			transition: all $transition-time
+			&:hover
+				color: darken($maincolor, 20%)

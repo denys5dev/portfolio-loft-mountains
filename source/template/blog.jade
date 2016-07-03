@@ -3,14 +3,15 @@ doctype html
 html
 	include common/_head
 	body
+		include common/_preloader
+
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 
 		include common/_sprites
-		.preloader
 
-		include common/_parallax
+		+parallax("vertical")
 		+main-menu(2)
 
 		header.header.table-box.fullheight.fullheight_mih
@@ -19,16 +20,16 @@ html
 			.table-box__middle
 				.vertical-aligned
 					.site-author.site-author_blog
-						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Денис Архипенко")
+						+avatar("iam.jpg", "Личный сайт веб разработчика", "Денис Архипенко")
 						+svg-heading("Блог", "icon-blog_header")
-						p.site-author__description Статьи
+						p.site-author__description Статьи, которые я написал
 
 
 					button.go-down.fa.fa-chevron-down(data-link=".blog")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left.header__svg-corner_blog
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_left.header__svg-corner_blog
 						use(xlink:href="#icon-about_bg_left")
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right.header__svg-corner_blog
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_right.header__svg-corner_blog
 						use(xlink:href="#icon-about_bg_right")
 
 
@@ -65,6 +66,4 @@ html
 						
 
 						<p>Можно спроектировать пользовательский интерфейс и frontend-приложение в стиле Angular, базируясь, по крайней мере, на трех основных языках: ES5, ES6/TypeScript и Dart, хотя ES6/TypeScript становится де-факто стандартом Angular.</p>
-
-
 		include common/_footer

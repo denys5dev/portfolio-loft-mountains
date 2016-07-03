@@ -1,4 +1,7 @@
 {
+	"globals": {
+		"require": true
+	},
 	"env": {
 		"browser": true,
 		"jquery" :true

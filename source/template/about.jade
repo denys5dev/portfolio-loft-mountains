@@ -3,14 +3,16 @@ doctype html
 html
 	include common/_head
 	body
+		include common/_preloader
+
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 		include common/_gmap
 		include common/_sprites
-		.preloader
+		
 
-		include common/_parallax
+		+parallax("vertical")
 		+main-menu(3)
 
 		header.header.table-box.fullheight.fullheight_mih
@@ -19,7 +21,7 @@ html
 			.table-box__middle
 				.vertical-aligned
 					.site-author
-						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+						+avatar("iam.jpg", "Личный сайт веб разработчика", "Денис Архипенко")
 						p.site-author__name Денис Архипенко
 						p.site-author__description Личный сайт веб разработчика
 
@@ -27,9 +29,9 @@ html
 						use(xlink:href="#icon-portfolio_header")
 					button.go-down.fa.fa-chevron-down(data-link=".about-me")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_left
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_left
 						use(xlink:href="#icon-about_bg_left")
-					svg(preserveAspectRatio="none" viewBox="0 0 1000 360").header__svg-corner.header__svg-corner_right
+					svg(preserveAspectRatio="none" viewBox="0 0 1000 400").header__svg-corner.header__svg-corner_right
 						use(xlink:href="#icon-about_bg_right")
 
 
@@ -40,7 +42,7 @@ html
 					.about-me__bio.bio
 						+svg-heading("Обо мне", "icon-about_header")
 						.bio__main-image
-							img(src="/assets/img/iam.jpg", alt="Денис Архипенко", title="Разработка сайтов под ключ. Frontend. Wordpress.")
+							img(src="/assets/img/iam.jpg", alt="Денис Архипенко", title="Личный сайт веб разработчика")
 						h3.bio__heading.sidestripes Кто я?
 						.bio__about
 							p.
@@ -53,43 +55,24 @@ html
 						.skills__descr
 							p.
 								Больше всего меня привлекет Frontend разработка, но я также знаком и могу решать не сложные задачи на Backend. Но давайте по порядку.
+
 						.skills__group
 							.group__title Frontend
-							.group__item
-								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-							.group__item
-								svg#svg( width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+							+pie_chart("Java-Script",90)
+							+pie_chart("Less & Sass",85)
+							+pie_chart("Jade",75)
 						.skills__group
 							.group__title Backend
-							.group__item
-								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='00')
-							.group__item
-								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-							.group__item
-								svg#svg(width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
+							+pie_chart("NodeJS",60)
 						.skills__group
 							.group__title Workflow
-							.group__item
-								svg#svg(style="float:left" width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-							.group__item
-								svg#svg(width='200', height='200', viewport='0 0 100 100', version='1.1', xmlns='http://www.w3.org/2000/svg')
-									circle(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-									circle#bar(r='60', cx='100', cy='100', fill='transparent', stroke-dasharray='800.48', stroke-dashoffset='0')
-		section.contacts.last-section
+							+pie_chart("Gulp",90)
+
+
+
+		section.contacts.last-section.fullheight.fullheight_mih
 			.contacts__map
-				#map
+				#map_wrapper
 			.contacts__info
 				.contacts__heading
 					h3.sidestripes Контакты
@@ -100,4 +83,5 @@ html
 							a.link(href="#")
 								i(class= "fa fa-" + link_a)
 								span=type
+
 		include common/_footer

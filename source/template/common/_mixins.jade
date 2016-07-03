@@ -8,6 +8,17 @@ mixin lorem(n)
 
 
 
+//- Parallax widget
+mixin parallax(type)
+	- var p_type = type || "axis"
+	.parallax-wrapper
+		ul#scene(class=p_type)
+			- for (var n = 0; n < 10; n++)
+				li.layer(data-depth=(0.1*n))
+					div(class = "layer-bg layer-bg_" + n)
+
+
+
 //- Rounded avatar widget
 mixin avatar(img, title, alt)
 	.avatar
@@ -23,23 +34,6 @@ mixin social_links(style)
 		each s_url, s_name in socials
 			li(class="social-links__item" + ((style) ? " social-links__item_#{style}" : ""))
 				a(class="social-links__link fa fa-" + s_name, href=s_url, target="_blank")
-
-
-
-//- Social profiles
-//- svg icons
-mixin social_links_svg()
-	ul.social-links
-		- var socials = {"vk" : "", "github" : "", "in" : ""}
-		each s_url, s_name in socials
-			li(class="social-links__item")
-				a(class="social-links__svg-link", href=s_url, target="_blank" )
-					svg
-						use(xlink:href="#icon-" + s_name + "_round")
-
-
-
-
 
 
 
@@ -90,3 +84,13 @@ mixin svg-heading(heading_text, svg_id, heading_type)
 	.svg-heading
 		#{h_type}.svg-heading__text.sidestripes= heading_text
 		svg.svg-heading__img: use(xlink:href="#"+svg_id)
+
+
+
+//- Skills Pie Charts
+mixin pie_chart(skill, percentage)
+	.group__item
+		.item-title=skill
+		svg(class="piechart" viewBox="0 0 120 120")
+			circle(class="piechart__bg" fill="none" stroke-width="20" stroke-dasharray="314.159265" stroke-dashoffset="314.159265" cx="60" cy="60" r="50" transform="rotate(-90, 60, 60)")
+			circle(class="piechart__fill", data-percentage=((100-percentage)/100)*314.159265, fill="none", stroke-width="20", stroke-dasharray="314.159265", stroke-dashoffset="314.159265", cx="60", cy="60", r="50", transform="rotate(-90, 60, 60)")

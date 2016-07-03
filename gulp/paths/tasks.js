@@ -7,7 +7,7 @@ module.exports = [
 	'./gulp/tasks/jade.js',
 	'./gulp/tasks/watch.js',
 	'./gulp/tasks/copy_fonts.js',
-	'./gulp/tasks/vendor_libs.js',
+	'./gulp/tasks/concat_libs.js',
 	'./gulp/tasks/vendor_css.js',
 	'./gulp/tasks/js.process.js',
 	'./gulp/tasks/js.lint.js',

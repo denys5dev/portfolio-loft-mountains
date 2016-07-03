@@ -42,8 +42,11 @@
 		bottom: 50%
 		transform: translateY(50%) rotate(45deg)
 
+.header__top-row.active
+	position: fixed
+
 .main-menu
-	position: absolute
+	position: fixed
 	top: 0
 	left: 0
 	right: 0
@@ -77,7 +80,7 @@
 		list-style: none
 		text-align: center
 		opacity: 0
-		transform: scale(0)
+		transform: scale3d(0,0,0)
 		transition: none
 	&__link
 		font-family: "bernier_regular"
@@ -124,8 +127,10 @@
 		&__item
 			opacity: 1
 			// visibility: visible
-			transform: scale(1)
-			transition: all $transition-time cubic-bezier(.77,.6,.31,1.2) $transition-time_medium
+			transform: scale3d(1,1,1)
+			transition: all $transition-time cubic-bezier(.77,.6,.31,1.4) $transition-time_medium
+
+
 
 
 
@@ -133,7 +138,13 @@
 // Header styles
 // =================================
 .header
+	text-align: center
 	position: relative
+	&_welcome
+		text-align: right
+		+media(s)
+			text-align: center
+
 	.site-author
 		position: relative
 		z-index: 1
@@ -157,6 +168,23 @@
 			+media(xs)
 				font-size: em(14)
 
+	.site-author_blog
+		.site-author__description
+			font-family: "roboto_regular"
+			opacity: 1
+
+		.svg-heading
+			padding: 30px 15px 15px
+			&__text
+				color: $white
+				width: auto
+			&__img
+				fill: $white
+				opacity: .2
+				height: 300px
+				width: 300px
+				transform: translate(-50%,-45%)
+
 
 	&__top-row
 		display: table-cell
@@ -177,7 +205,7 @@
 		top: 50%
 		left: 50%
 		transform: translate(-50%, -50%)
-		width: 100%
+		width: 90%
 		height: 100%
 		z-index: 0
 		fill: $white
@@ -208,22 +236,3 @@
 
 	&__title
 		background-color: $pastel_light
-
-.go-down,
-.go-up
-	color: $white
-	font-size: em(36)
-	opacity: .7
-	transition: all $transition-time
-	&:hover
-		opacity: 1
-
-.go-down
-	position: absolute
-	z-index: 1
-	bottom: 40px
-	left: 50%
-	transform: translateX(-50%)
-	&:hover
-		padding-top: 10px
-		bottom: 30px

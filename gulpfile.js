@@ -6,6 +6,7 @@ global.$ = {
 	path: {
 		task: require('./gulp/paths/tasks.js'),
 		template: require('./gulp/paths/template.js'),
+		myLibs: require('./gulp/paths/my_libs_paths.js'),
 		vendorLibs: require('./gulp/paths/vendor_libs_paths.js'),
 		vendorCss: require('./gulp/paths/vendor_css_paths.js'),
 		app: require('./gulp/paths/app.js')
@@ -13,6 +14,9 @@ global.$ = {
 	gulp: require('gulp'),
 	rimraf: require('rimraf'),
 	bourbon: require('node-bourbon'),
+	browserify: require('browserify'),
+	vinyl: require('vinyl-source-stream'),
+	buffer: require('vinyl-buffer'),
 	browserSync: require('browser-sync').create(),
 	gp: require('gulp-load-plugins')()
 };
@@ -29,7 +33,8 @@ $.gulp.task('default', $.gulp.series(
 		'copy_fonts',
 		'sass',
 		'jade',
-		'vendor_libs',
+		'concat_libs',
+		'js.lint',
 		'js.process',
 		'copy.image'
 		),

@@ -1,0 +1,135 @@
+include common/_mixins
+doctype html
+html
+	include common/_head
+	body.blur_example_page
+		include common/_preloader
+
+		<!--[if lt IE 7]>
+		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
+		<![endif]-->
+
+		include common/_sprites
+
+		+parallax("vertical")
+		+main-menu(1)
+
+		header.header.table-box.fullheight.fullheight_mih
+			.table-box__top
+				+header-top
+			.table-box__middle
+				.vertical-aligned
+					.site-author
+						+avatar("me.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+						p.site-author__name Лембинен Николай
+						p.site-author__description Еще одна страничка
+
+					svg.header__svg-bg
+						use(xlink:href="#icon-portfolio_header")
+					button.go-down.fa.fa-chevron-down(data-link=".portfolio-slider")
+
+					svg(preserveAspectRatio="none" viewBox="0 0 2000 400").header__svg-corner
+						use(xlink:href="#icon-bg")
+			.table-box__bottom
+				.header__title
+					+svg-heading("Мои работы", "icon-works_header")
+
+
+		section.portfolio-slider
+			.portfolio-slider__module.portfolio-slider__preview-container
+				img.portfolio-preview(src="/assets/img/works/unspoken.png")
+
+			.portfolio-slider__module.portfolio-slider__projects-container
+				.portfolio-projects
+					.project.active
+						.project__inner
+							h3.sidestripes.project__title Unspoken World Magazine
+							p.project__tech html, bootstrap, sass, jquery, fullpage.js, animate.css, wordpress
+							a(href="http://unspoken-world.com/", target="_blank").project__link Посмотреть сайт
+					.project
+						.project__inner
+							h3.sidestripes.project__title Myspace 1.0 профили
+							p.project__tech Pure oldschool CSS and HTML
+							button.project__link Давно и неправда
+					.project
+						.project__inner
+							h3.sidestripes.project__title Alpha Capital Education. Перенос готового дизайна с Wix на WP.
+							p.project__tech wix to html, bootstrap, sass, jquery, wordpress
+							a(href="http://alpha.unspoken-world.com/", target="_blank").project__link Посмотреть сайт
+					.project
+						.project__inner
+							h3.sidestripes.project__title Информационный портал Karakalpakiya.ru
+							p.project__tech html, bootstrap, sass, jquery, animate.css, wordpress
+							a(href="http://karakalpakiya.ru/", target="_blank").project__link Посмотреть сайт
+					.project
+						.project__inner
+							h3.sidestripes.project__title Лэндинг транспортной компании Bringcar
+							p.project__tech html, bootstrap, sass, jquery, animate.css, schema.org
+							a(href="http://bringcar.ru/", target="_blank").project__link Посмотреть сайт
+
+			.portfolio-slider__module.portfolio-slider__navigation-container
+				.navigation-box.navigation-box_prev
+					button.portfolio-button.portfolio-button_prev
+						.fa.fa-chevron-down
+					.portfolio-thumbnails
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/myspace.png", alt="MySpace")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+				.navigation-box.navigation-box_next
+					button.portfolio-button.portfolio-button_next
+						.fa.fa-chevron-up
+					.portfolio-thumbnails
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/unspoken.png", alt="Unspoken World Magazine")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/myspace.png", alt="MySpace")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/alpha.png", alt="Alpha Capital Education")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/karakalpakiya.png", alt="Karakalpakiya")
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/bringcar.png", alt="Bringcar")
+
+
+
+		section.talks.clearfix.last-section
+			+svg-heading("Что обо мне говорят", "icon-about_header", h2)
+			.talks__wrapper.clearfix
+				.testimonial
+					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+					.testimonial__author.author
+						+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
+						.author
+							p.author__name Ковальчук Дмитрий
+							p.author__description сооснователь LoftSchool
+
+				.testimonial
+					blockquote.testimonial__text Этот парень был одним из тех, кто просто хочет спать
+					.testimonial__author
+						+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
+						.author
+							p.author__name Зар Захаров
+							p.author__description сооснователь LoftSchool
+
+			form.contact-form(type="POST" action="/")
+				.contact-form__bg
+				.contact-form__content
+					h3.contact-form__heading.sidestripes Связаться со мной
+					input.contact-form__field(type="text" name="name" placeholder="Имя")
+					input.contact-form__field(type="text" name="email" placeholder="Email")
+					textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
+
+				ul.page-links
+					- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+					each b_action, b_name in buttons
+						li.page-links__item
+							button(class="page-links__link", id=b_action)= b_name
+
+		include common/_footer

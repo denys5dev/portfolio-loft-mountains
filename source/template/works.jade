@@ -3,14 +3,15 @@ doctype html
 html
 	include common/_head
 	body
+		include common/_preloader
+
 		<!--[if lt IE 7]>
 		<p class="browsehappy">Вы используете <strong>устаревший</strong> браузер. Пожалуйста <a href="http://browsehappy.com/">обновите его</a></p>
 		<![endif]-->
 
 		include common/_sprites
-		.preloader
 
-		include common/_parallax
+		+parallax("vertical")
 		+main-menu(1)
 
 		header.header.table-box.fullheight.fullheight_mih
@@ -19,7 +20,7 @@ html
 			.table-box__middle
 				.vertical-aligned
 					.site-author
-						+avatar("iam.jpg", "Frontend. Wordpress. Разработка сайтов под ключ.", "Лембинен Николай")
+						+avatar("iam.jpg", "Личный сайт веб разработчика", "Денис Архипенко")
 						p.site-author__name Денис Архипенко
 						p.site-author__description Личный сайт веб разработчика
 
@@ -27,7 +28,7 @@ html
 						use(xlink:href="#icon-portfolio_header")
 					button.go-down.fa.fa-chevron-down(data-link=".portfolio-slider")
 
-					svg(preserveAspectRatio="none" viewBox="0 0 2000 360").header__svg-corner
+					svg(preserveAspectRatio="none" viewBox="0 0 2000 400").header__svg-corner
 						use(xlink:href="#icon-bg")
 			.table-box__bottom
 				.header__title
@@ -36,18 +37,27 @@ html
 
 		section.portfolio-slider
 			.portfolio-slider__module.portfolio-slider__preview-container
-				.portfolio-previews
-					.portfolio-previews__preview
-						img(src="/assets/img/works/first.png", alt="first")
-					.portfolio-previews__preview
-						img(src="/assets/img/works/second.png", alt="second")
+				img.portfolio-preview.active(src="/assets/img/works/first.png")
+				img.portfolio-preview(src="/assets/img/works/second.png")
+				img.portfolio-preview(src="/assets/img/works/third.png")
 
 			.portfolio-slider__module.portfolio-slider__projects-container
 				.portfolio-projects
+					.project.active
+						.project__inner
+							h3.sidestripes.project__title Первый
+							p.project__tech Java-Script, Sass, Jquery
+							a(href="http://google.com/", target="_blank").project__link Посмотреть сайт
 					.project
-						h3.sidestripes.project__title Сайт школы онлайн Образования
-						p.project__tech html, css, javascript
-						a(href="#").project__link Посмотреть сайт
+						.project__inner
+							h3.sidestripes.project__title Второй
+							p.project__tech Java-Script, Sass, Jquery
+							a(href="http://google.com/", target="_blank").project__link Посмотреть сайт
+					.project
+						.project__inner
+							h3.sidestripes.project__title Третий
+							p.project__tech Java-Script, Sass, Jquery
+							a(href="http://google.com/", target="_blank").project__link Посмотреть сайт
 
 			.portfolio-slider__module.portfolio-slider__navigation-container
 				.navigation-box.navigation-box_prev
@@ -55,18 +65,26 @@ html
 						.fa.fa-chevron-down
 					.portfolio-thumbnails
 						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/first.png", alt="First")
+						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/second.png", alt="Second")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/third.png", alt="Third")
 				.navigation-box.navigation-box_next
 					button.portfolio-button.portfolio-button_next
 						.fa.fa-chevron-up
 					.portfolio-thumbnails
+						.portfolio-thumbnails__thumbnail
+							img(src="/assets/img/works/first.png", alt="First")
+						.portfolio-thumbnails__thumbnail.active
+							img(src="/assets/img/works/second.png", alt="Second")
 						.portfolio-thumbnails__thumbnail
 							img(src="/assets/img/works/third.png", alt="Third")
 
 
 
 		section.talks.clearfix.last-section
-			+svg-heading("Что обо мне говорят", "icon-about_header", "h2")
+			+svg-heading("Что обо мне говорят", "icon-about_header", h2)
 			.talks__wrapper.clearfix
 				.testimonial
 					blockquote.testimonial__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
@@ -74,7 +92,7 @@ html
 						+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
 						.author
 							p.author__name Ковальчук Дмитрий
-							p.author__description сооснователь LoftSchool
+							p.author__description основатель LoftSchool
 
 				.testimonial
 					blockquote.testimonial__text Этот код выдержет любые испытания. Только пожалуйста, не загружается сайт на слишком старых браузерах!
@@ -82,22 +100,21 @@ html
 						+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
 						.author
 							p.author__name Зар Захаров
-							p.author__description сооснователь LoftSchool
+							p.author__description главный преподаватель
 
-			form.contact-form(method="POST" action="/")
-				.contact-form__bg
-				.contact-form__content
-					h3.contact-form__heading.sidestripes Связаться со мной
-					input.contact-form__field(type="text" name="name" placeholder="Имя")
-					input.contact-form__field(type="text" name="email" placeholder="Email")
-					textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
+			.contact-form
+				form#contact
+					.contact-form__bg
+					.contact-form__content
+						h3.contact-form__heading.sidestripes Связаться со мной
+						input.contact-form__field(type="text" name="name" placeholder="Имя")
+						input.contact-form__field(type="text" name="email" placeholder="Email")
+						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
 
-				ul.page-links
-					- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
-					- var buttons_type = ["submit", "reset"];
-					- var val = 0;
-					each b_action, b_name in buttons
-						li(style="width: 50%").page-links__item
-							button(class="page-links__link", id=b_action, type=buttons_type[val++])= b_name
+					ul.form-buttons
+						- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+						each b_action, b_name in buttons
+							li.form-buttons__button.form-buttons__button_even
+								button(class="form-buttons__button-content", id=b_action)= b_name
 
 		include common/_footer

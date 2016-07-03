@@ -1,43 +1,58 @@
-(function() {
-	'use strict';
+(function($) {
+	"use strict";
+	var preloader = require("./preloader.js"),
+		helpers = require("./helpers.js"),
+		verticalParallax = require("./verticalParallax.js"),
+		slider = require("./slider.js");
 
-	setTimeout(function() {
-		document.querySelector('.greating_picture').classList.add('m--show');
-	}, 1000);
-    
-    // ==============================
-	// Animations
 	// ==============================
-	$.fn.animated = function(inEffect) {
-		$(this).each(function() {
-			var ths = $(this);
-			ths.css("opacity", "0")
-				.addClass("animated")
-				.waypoint(function(dir) {
-					if (dir === "down") {
-						ths.addClass(inEffect).css("opacity", "1");
-					}
-				},
-				{
-					offset: "90%"
-				});
+	// App global parameters object
+	// ==============================
+	window.hm = {};
+
+	window.hm.scrollBarWidth = helpers.getScrollbarWidth();
+	window.hm.mobileSize = 480 - window.hm.scrollBarWidth;
+	window.hm.tabletSize = 768 - window.hm.scrollBarWidth;
+	window.hm.resizeLimit = 2000 - window.hm.scrollBarWidth;
+
+	helpers.fadePageOn("a.preload-link");
+
+	$("header .svg-heading, .talks .svg-heading, .talks .testimonial").animated("fadeInUp");
+	$(".about-me__skills>div").animated("fadeInUp");
+	$(".article, .portfolio-slider__navigation-container, .portfolio-slider__preview-container").animated("fadeIn");
+	$(".portfolio-slider__projects-container").animated("fadeIn");
+
+	$(".piechart .piechart__fill").animatePies();
+
+	// ==============================
+	// Parallax
+	// ==============================
+	if($("#scene.axis").length){
+		$("#scene.axis").parallax({
+			scalarX: 3,
+			scalarY: 3,
+			frictionX: 0.5,
+			frictionY: 0.5
 		});
-	};
+	}
 
-	$("header .svg-heading, .talks .svg-heading, .talks .testimonial, .portfolio-slider__module>div, .about-me__skills>div").animated("fadeInUp");
-	$(".article").animated("fadeIn");
+	if($("#scene.vertical").length){
+		verticalParallax.createParallax("#scene.vertical", ".layer");
+		// IE scroll jump fix
+		if(helpers.ieVersion()) {
+			$(".layer").css({transition:"transform .15s linear"});
+			$("#scene.vertical").css({transition:"opacity .15s linear"});
 
+			$("body").on("mousewheel", function () {
+				event.preventDefault(); 
 
-	// ==============================
-	// Axis Parallax
-	// ==============================
-	$("#scene").parallax({
-		scalarX: 3,
-		scalarY: 3,
-		frictionX: 0.5,
-		frictionY: 0.5
-	});
+				var wheelDelta = event.wheelDelta,
+					currentScrollPosition = window.pageYOffset;
 
+				window.scrollTo(0, currentScrollPosition - wheelDelta);
+			});
+		}
+	}
 
 	// ==============================
 	// Login card flip
@@ -46,11 +61,29 @@
 		$("body").addClass("card_flipped");
 	});
 
-	$("#unflip-card").click(function() {
+	$("#unflip-card").click(function(e) {
+		e.preventDefault();
 		$("body").removeClass("card_flipped");
 	});
 
+	// ==============================
+	// Contact form
+	// ==============================
+	if($("#contact").length){
+		var c_form = $("#contact"),
+			send_button = c_form.find("#form-submit"),
+			clear_button = c_form.find("#form-clear");
 
+		clear_button.on("click", function(e){
+			e.preventDefault();
+			c_form[0].reset();
+		});
+
+		send_button.on("click", function(e){
+			e.preventDefault();
+			// c_form[0].reset();
+		});
+	}
 
 	// ==============================
 	// Main menu
@@ -62,6 +95,8 @@
 	$(".main-menu__item").each(function(index) {
 		$(this).css("transition-delay", 0.3+0.1*index + "s");
 	});
+
+
 
 
 	// ==============================
@@ -80,107 +115,122 @@
 		}, 700, "swing");
 	});
 
-	$(".blog-navigation__toggle").click(function(){
-		$(".blog-navigation").toggleClass("active");
-	});
+
 
 	// ==============================
-	// Fake preloader
+	// Slider
 	// ==============================
-	setTimeout(function(){
-		$(".preloader")
-			.fadeOut(400, function(){
-				$(".flip-card").addClass("loaded");
+	if($(".portfolio-slider").length){
+
+		$(".portfolio-projects .project__title, .portfolio-projects .project__tech")
+			.each(function() {
+				slider.prepareTitles($(this), 700);
 			});
-	}, 500);
 
-	// Page change
-	$(document).on("click", "a.preload-link", function(e) {
-		var href = $(this).attr("href");
-		e.preventDefault();
-
-		return $(".preloader")
-			.fadeIn(500, function(){
-				return document.location = href != null ? href : "/";
-			});
-	});
+		slider.createSlider(".portfolio-slider");
+	}
 
 
 	// ==============================
-	// SCROLL EVENTS
+	// Blog scroll events
 	// ==============================
-
-	// SCROLL NAVIGATION BEGIN
-	var lastId,
-		menu = $(".blog-navigation"),
-		menuItems = menu.find("li a"),
-		scrollItems = menuItems.map(function(){
-			var item = $($(this).attr("href"));
-			if (item.length) return item;
+	if($(".blog-navigation").length){
+		$(".blog-navigation__toggle").click(function(){
+			$(".blog-navigation").toggleClass("active");
 		});
 
-	// Bind click handler to menu items
-	// so we can get a fancy scroll animation
-	menuItems.click(function(e){
-		var href = $(this).attr("href"),
-			offsetTop = (href === "#") ? 0 : $(href).offset().top-60;
-		
-		$("html, body").stop().animate({ 
-			scrollTop: offsetTop
-		}, 300);
-		e.preventDefault();
-	});
+		var activeId,
+			additionalOffset = 60,
+			menu = $(".blog-navigation"),
+			menuItems = menu.find("li a"),
+			scrollItems = menuItems.map(function(){
+				var item = $($(this).attr("href"));
+				if (item.length) return item;
+			});
 
-	// Bind to scroll
+		menuItems.click(function(e){
+			var href = $(this).attr("href"),
+				offsetTop = (href === "#") ? 0 : $(href).offset().top - additionalOffset;
 
-	$(window).scroll(function() {
-		// Get container scroll position
-		var fromTop = $(this).scrollTop(),
-			blogNavOffset = $(".blog-navigation").offset().top,
-			blogNavLimit = $(".footer__wrapper").offset().top - $(".blog-navigation__wrapper").outerHeight();
+			e.preventDefault();
 
-		// Get id of current scroll item
-		var cur = scrollItems.map(function(){
-			if ($(this).offset().top < fromTop+144)
-				return this;
+			$("html, body").stop().animate({ 
+				scrollTop: offsetTop
+			}, 700, "swing");
 		});
-		// Get the id of the current element
-		cur = cur[cur.length-1];
-		var id = cur && cur.length ? cur[0].id : "";
 
-		if (lastId !== id) {
-			lastId = id;
-			// Set/remove active class
-			menuItems
-			.removeClass("active")
-			.filter("[href=#"+id+"]")
-			.addClass("active");
-		}
+		$(window).scroll(function() {
+			var fromTop = $(this).scrollTop(),
+				blogNavOffset = $(".blog-navigation").offset().top,
+				blogNavLimit = $(".footer__wrapper").offset().top - $(".blog-navigation__wrapper").outerHeight(),
+				current = scrollItems.map(function(){
+					if ($(this).offset().top < fromTop+144)
+						return this;
+				});
 
-		if(fromTop >= blogNavLimit && $(window).width()>768) {
-			$(".blog-navigation__wrapper").css({"position":"absolute", "top":blogNavLimit + "px"});
-		} else if (fromTop >= blogNavOffset && $(window).width()>768) {
-			$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
-			$(".blog-navigation__wrapper").addClass("nav-fixed");
-		} else {
-			$(".blog-navigation__wrapper").css({"position":"relative"});
-			$(".blog-navigation__wrapper").removeClass("nav-fixed");
-		}
-	});
-	// SCROLL NAVIGATION END
+			current = current[current.length-1];
+			var id = current && current.length ? current[0].id : "";
+
+			if (activeId !== id) {
+				activeId = id;
+				menuItems.removeClass("active").filter("[href=#"+id+"]").addClass("active");
+			}
+
+			if(fromTop >= blogNavLimit && $(window).width() > window.hm.tabletSize) {
+				$(".blog-navigation__wrapper").css({"position":"absolute", "top":blogNavLimit + "px"});
+			} else if (fromTop >= blogNavOffset && $(window).width() > (768 - window.hm.scrollBarWidth)) {
+				$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
+				$(".blog-navigation__wrapper").addClass("nav-fixed");
+			} else {
+				$(".blog-navigation__wrapper").css({"position":"relative"});
+				$(".blog-navigation__wrapper").removeClass("nav-fixed");
+			}
+
+		});
+
+		$(window).resize(function() {
+			if($(window).width() <= window.hm.tabletSize){
+				$(".blog-navigation__wrapper").removeClass("nav-fixed");
+				$(".blog-navigation__wrapper").css({"position":"relative"});
+			} else {
+				if($("body").scrollTop() >= $(".blog").offset().top){
+					$(".blog-navigation__wrapper").css({"position":"fixed", "top":0});
+					$(".blog-navigation__wrapper").addClass("nav-fixed");
+				}
+			}
+		});
+	}
+
 
 
 	// ==============================
-	// RESIZE EVENTS
+	// Talks blur based on js
 	// ==============================
-	$(window).resize(function() {
+	function set_bg(){
+		var section = $(".talks"),
+			form = section.find(".contact-form"),
+			form_bg = form.find(".contact-form__bg"),
+			bg_offset = section.offset().top - form_bg.offset().top;
 
-		// Testimonials section bg size
-		if( $(window).width()>2000){
-			$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
-		}
+		form_bg.css({
+			"background-position" : "center " + bg_offset + "px"
+		});
+	}
 
-	});
+	if($(".talks").length){
+		$(window).on("load", function() {
+			set_bg();
+		});
 
+		$(window).resize(function() {
+			set_bg();
 
-})();
+			// Upscale "testimonials" section background to fit its container
+			if( $(window).width() > window.hm.resizeLimit){
+				$(".talks, .contact-form__bg").css("background-size", $(window).width() + "px");
+			}
+		});
+	}
+
+	preloader();
+})(jQuery);
