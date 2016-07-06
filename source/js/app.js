@@ -66,6 +66,17 @@
 		$("body").removeClass("card_flipped");
 	});
 
+	$('#log-me').click(function (e) {
+		e.preventDefault();
+		var login = $('#text').val();
+		var password = $('#password').val();
+		if(!login || !password){
+			$("#popup1").fadeIn("slow", function () {
+					
+			})
+		}
+	})
+
 	// ==============================
 	// Contact form
 	// ==============================
@@ -233,4 +244,29 @@
 	}
 
 	preloader();
+
+	// ==============================
+	// PopUP
+	// ==============================
+	$(document).ready(function(){
+		$("#popup1").hide();
+	});
+		$('#form-submit').click(function(){
+			var formfield_name = $('#formfield_name').val();
+			var formfield_email = $('#formfield_email').val();
+			var formfield_text = $('#formfield_text').val();
+
+			if(!formfield_name || !formfield_email || !formfield_text){
+				$("#popup1").fadeIn("slow", function () {
+					
+				})
+			}
+		});
+		$('.popup-button').click(function(){
+			$("#popup1").hide();
+		})
+
 })(jQuery);
+
+
+		

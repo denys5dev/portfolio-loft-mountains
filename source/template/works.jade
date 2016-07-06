@@ -13,6 +13,7 @@ html
 
 		+parallax("vertical")
 		+main-menu(1)
+		+popup()
 
 		header.header.table-box.fullheight.fullheight_mih
 			.table-box__top
@@ -107,14 +108,16 @@ html
 					.contact-form__bg
 					.contact-form__content
 						h3.contact-form__heading.sidestripes Связаться со мной
-						input.contact-form__field(type="text" name="name" placeholder="Имя")
-						input.contact-form__field(type="text" name="email" placeholder="Email")
-						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение")
-
+						input.contact-form__field(type="text" name="name" placeholder="Имя" id="formfield_name")
+						input.contact-form__field(type="text" name="email" placeholder="Email" id="formfield_email")
+						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение" id="formfield_text")
+						
 					ul.form-buttons
 						- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+						- var buttons_type = ["submit", "reset"];
+						- var val = 0;
 						each b_action, b_name in buttons
 							li.form-buttons__button.form-buttons__button_even
-								button(class="form-buttons__button-content", id=b_action)= b_name
+								button(class="form-buttons__button-content", id=b_action, type=buttons_type[val++])= b_name
 
 		include common/_footer

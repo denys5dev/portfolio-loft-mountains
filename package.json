@@ -1,8 +1,8 @@
 {
-  "name": "My portfolio",
+  "name": "portfolio",
   "version": "1.0.0",
   "author": "Denys Arkhipenko",
-  "desctiption": "My portfolio",
+  "desctiption": "portfolio",
   "license": "ISC",
   "scripts": {
     "postinstall": "bower install"

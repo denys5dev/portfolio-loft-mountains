@@ -42,7 +42,7 @@ mixin social_links(style)
 mixin input_iconed(elements)
 	each params in elements
 		label(class="login-form__label login-form__label_text")
-			input(class="input input_text", placeholder=params[1], type=params[2])
+			input(class="input input_text", placeholder=params[1], type=params[2], id=params[2])
 			span(class="fa fa-" + params[0])
 
 
@@ -85,6 +85,15 @@ mixin svg-heading(heading_text, svg_id, heading_type)
 		#{h_type}.svg-heading__text.sidestripes= heading_text
 		svg.svg-heading__img: use(xlink:href="#"+svg_id)
 
+//- PopUP Windows
+mixin popup()
+	.b-container
+	.b-popup(id="popup1")
+		.b-popup-content
+			//- button.popup-button X
+			i(class="fa fa-times popup-button")
+			p.popup-text Заполните все поля !
+			
 
 
 //- Skills Pie Charts
