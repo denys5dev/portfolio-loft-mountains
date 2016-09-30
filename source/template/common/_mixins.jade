@@ -30,7 +30,7 @@ mixin avatar(img, title, alt)
 //- style - BEM modidifier
 mixin social_links(style)
 	ul.social-links
-		- var socials = {"vk" : "", "github-alt" : "", "linkedin" : ""}
+		- var socials = {"vk" : "https://vk.com/den5aw", "github-alt" : "https://github.com/denys5dev", "linkedin" : "https://www.linkedin.com/in/denys-arkhipenko-117991ba?trk=hp-identity-name"}
 		each s_url, s_name in socials
 			li(class="social-links__item" + ((style) ? " social-links__item_#{style}" : ""))
 				a(class="social-links__link fa fa-" + s_name, href=s_url, target="_blank")
@@ -59,7 +59,7 @@ mixin input_checkers(elements)
 
 //- Fullscreen Menu widget
 mixin main-menu(active)
-	- var pages = {"Мои работы":"works.html", "Блог":"blog.html", "Обо мне":"about.html", "Авторизация":"/"}
+	- var pages = {"My works":"works.html", "Blog":"blog.html", "About me":"about.html", "Login":"/"}
 	nav.main-menu
 		ul.main-menu__content
 			- var i = 1

@@ -14,21 +14,21 @@ html
 
 		header.header.header_welcome.table-box__top
 			.container.container_padded
-				button.login-button Авторизоваться
+				button.login-button Login
 
 		.table-box__middle
 			.vertical-aligned.perspective-box
 				.flip-card
 					.flip-card__front-side
 						.author-bio
-							+avatar("iam.jpg", "Денис Архипенко")
-							p.author-bio__name Денис Архипенко
-							p.author-bio__description Личный сайт веб разработчика
+							+avatar("iam.jpg", "Denys Arkhipenko")
+							p.author-bio__name Denys Arkhipenko
+							p.author-bio__description Frontend devoloper
 
 							+social_links("welcome")
 
 						ul.form-buttons
-							- var pages = {"Мои работы" : "works.html", "Обо мне" : "about.html", "Блог" : "blog.html"}
+							- var pages = {"My works" : "works.html", "About me" : "about.html", "Blog" : "blog.html"}
 							each p_url, p_name in pages
 								li.form-buttons__button
 									a(class="preload-link form-buttons__button-content" href=p_url)= p_name
@@ -36,14 +36,14 @@ html
 					.flip-card__back-side
 						form#login
 							.login-form
-								h3.sidestripes Авторизуйтесь
-								+input_iconed([["user", "Логин", "text"], ["key", "Пароль", "password"]])
-								+input_checkers([["checkbox", "robot_check", "not a robot", "Я человек"]])
-								p.login-form__plain-text Вы точно не робот?
-								+input_checkers([["radio", "robot_radio", "shure", "Да"], ["radio", "robot_radio", "who knows", "Не уверен"]])
+								h3.sidestripes Autorization
+								+input_iconed([["user", "Login", "text"], ["key", "Password", "password"]])
+								+input_checkers([["checkbox", "robot_check", "not a robot", "I am a human"]])
+								p.login-form__plain-text You are realy not robot?
+								+input_checkers([["radio", "robot_radio", "shure", "Yes"], ["radio", "robot_radio", "who knows", "No"]])
 
 							ul.form-buttons
-								- var buttons = {"На главную" : "unflip-card", "Войти" : "log-me"}
+								- var buttons = {"Home page" : "unflip-card", "Login" : "log-me"}
 								each b_action, b_name in buttons
 									li.form-buttons__button.form-buttons__button_even
 										button(class="form-buttons__button-content", id=b_action)= b_name

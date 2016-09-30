@@ -3,13 +3,13 @@ footer.footer.footer_common
 	.footer__wrapper
 		.footer__row
 			.footer__column.footer__column_left
-				- var pages = {"Мои работы":"works.html", "Обо мне":"about.html", "Блог":"blog.html", "Авторизация":"/"}
+				- var pages = {"My works":"works.html", "About me":"about.html", "Blog":"blog.html", "Login":"/"}
 				each p_url, p_title in pages
 					a.footer__link.preload-link(href=p_url)=p_title
 			.footer__column.footer__column_right
 				ul.social-links
 					li(class="social-links__item social-links__item_svg")
-						a.social-links__svg-link(href="", target="_blank").
+						a.social-links__svg-link(href="https://vk.com/den5aw", target="_blank").
 							<svg viewBox="0 0 50 50" id="icon-vk_round">
 								<mask id="vk_mask" x="0" y="0" width="100%" height="100%">
 									<rect class="mask__rect_inner" width="100" height="100"/>
@@ -27,7 +27,7 @@ footer.footer.footer_common
 								<rect class="mask__rect_outer" mask="url(#vk_mask)" width="100" height="100"/>
 							</svg>
 					li(class="social-links__item social-links__item_svg")
-						a.social-links__svg-link(href="", target="_blank").
+						a.social-links__svg-link(href="https://github.com/denys5dev", target="_blank").
 							<svg viewBox="0 0 50 50" id="icon-github_round">
 								<mask id="github_mask" x="0" y="0" width="100%" height="100%">
 									<rect class="mask__rect_inner" width="100" height="100"/>
@@ -45,7 +45,7 @@ footer.footer.footer_common
 								<rect class="mask__rect_outer" mask="url(#github_mask)" width="100" height="100"/>
 							</svg>
 					li(class="social-links__item social-links__item_svg")
-						a.social-links__svg-link(href="", target="_blank").
+						a.social-links__svg-link(href="https://www.linkedin.com/in/denys-arkhipenko-117991ba?trk=hp-identity-name", target="_blank").
 							<svg viewBox="0 0 50 50" id="icon-in_round">
 								<mask id="in_mask" x="0" y="0" width="100%" height="100%">
 									<rect class="mask__rect_inner" width="100" height="100"/>
@@ -60,10 +60,10 @@ footer.footer.footer_common
 		.footer__row
 			.footer__column.footer__column_left
 				span.footer__quote
-					i Я веб-разработчик из Новосибирска, и этот сайт я сделал в рамках обучения в Школе онлайн образования LoftSchool.”
+					i "I am frontend developer from Ukraine. This website just example”
 			.footer__column.footer__column_right
-				span.copyright &copy; Денис Архипенко
-				span.copyright(class="copyright_slogan") создано с любовью в LoftSchool
-				span.copyright(class="copyright_year") 2016
+				span.copyright &copy; Denys Arkhipenko
+				span.copyright(class="copyright_slogan") created with love
+				span.copyright(class="copyright_year") 2015
 
 include _footer-scripts

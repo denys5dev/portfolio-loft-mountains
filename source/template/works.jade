@@ -21,9 +21,9 @@ html
 			.table-box__middle
 				.vertical-aligned
 					.site-author
-						+avatar("iam.jpg", "Личный сайт веб разработчика", "Денис Архипенко")
-						p.site-author__name Денис Архипенко
-						p.site-author__description Личный сайт веб разработчика
+						+avatar("iam.jpg", "frontend developer", "Denys Arkhipenko")
+						p.site-author__name Denys Arkhipenko
+						p.site-author__description Frontend developer
 
 					svg.header__svg-bg
 						use(xlink:href="#icon-portfolio_header")
@@ -33,7 +33,7 @@ html
 						use(xlink:href="#icon-bg")
 			.table-box__bottom
 				.header__title
-					+svg-heading("Мои работы", "icon-works_header")
+					+svg-heading("My Works", "icon-works_header")
 
 
 		section.portfolio-slider
@@ -85,7 +85,7 @@ html
 
 
 		section.talks.clearfix.last-section
-			+svg-heading("Что обо мне говорят", "icon-about_header", h2)
+			+svg-heading("Feedback", "icon-about_header", h2)
 			.talks__wrapper.clearfix
 				.testimonial
 					blockquote.testimonial__text Этот парень проходил обучение веб-разработке не где-то, а в LoftSchool! 2 месяца только самых тяжелых испытаний и бессонных ночей!
@@ -93,7 +93,7 @@ html
 						+avatar("dima.png", "Сооснователь школы LoftSchool", "Ковальчук Дмитрий")
 						.author
 							p.author__name Ковальчук Дмитрий
-							p.author__description основатель LoftSchool
+							p.author__description 
 
 				.testimonial
 					blockquote.testimonial__text Этот код выдержет любые испытания. Только пожалуйста, не загружается сайт на слишком старых браузерах!
@@ -101,19 +101,19 @@ html
 						+avatar("zar.png", "Сооснователь школы LoftSchool", "Зар Захаров")
 						.author
 							p.author__name Зар Захаров
-							p.author__description главный преподаватель
+							p.author__description 
 
 			.contact-form
 				form#contact
 					.contact-form__bg
 					.contact-form__content
-						h3.contact-form__heading.sidestripes Связаться со мной
-						input.contact-form__field(type="text" name="name" placeholder="Имя" id="formfield_name")
+						h3.contact-form__heading.sidestripes Contact with me
+						input.contact-form__field(type="text" name="name" placeholder="Name" id="formfield_name")
 						input.contact-form__field(type="text" name="email" placeholder="Email" id="formfield_email")
-						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Ваше сообщение" id="formfield_text")
+						textarea.contact-form__field.contact-form__field_textarea(name="message" placeholder="Message" id="formfield_text")
 						
 					ul.form-buttons
-						- var buttons = {"Отправить" : "form-submit", "Очистить" : "form-clear"}
+						- var buttons = {"Send" : "form-submit", "Clear" : "form-clear"}
 						- var buttons_type = ["submit", "reset"];
 						- var val = 0;
 						each b_action, b_name in buttons
